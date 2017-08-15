@@ -77,37 +77,7 @@
             type: Array,
             reflectToAttribute: true,
             notify: true,
-            value: [
-                    {
-                        firstname: "mark",
-                        lastname: "van steenbruggen",
-                        department: "NSP",
-                        function: "programmer",
-                        id: "df43vs"
-                    },
-                    {
-                        firstname: "peter",
-                        lastname: "petersen",
-                        department: "basement",
-                        function: "cleaning lady",
-                        id: "sw38vs"
-                    },
-                    {
-                        firstname: "jules",
-                        lastname: "verne",
-                        department: "business stuff",
-                        function: "business analyst",
-                        id: "kd58fs"
-                    },
-                    {
-                        firstname: "henri",
-                        lastname: "von dinckleberg",
-                        department: "sanitation",
-                        function: "architect",
-                        id: "gs76df"
-                    }
-            ]
-
+            value: []
          }
       }
       }
@@ -140,6 +110,7 @@
       //DIT TERUG OP >= 3 ZETTEN LATER, ZODAT WE MINDER CALLS MOETEN MAKEN NAAR DE BACKEND
         if(this.searchQuery.length >= 0){
                  this.searchResults = [];
+                 //LOOKING THROUGH ALL THE DATA, ITS NOT SMART
                  this.mockData.forEach(this.findMatches, this);
         }
         if(this.searchQuery.length === 0) {
@@ -148,12 +119,20 @@
       }
 
       findMatches(item) {
+
+            if(this.hasNumber(this.searchQuery) && item.id.toLowerCase().indexOf(this.searchQuery.toLowerCase()) !== -1) {
+                this.push('searchResults', item);
+            }
             if(item.firstname.toLowerCase().indexOf(this.searchQuery.toLowerCase()) !== -1) {
                 this.push('searchResults', item);
             }
             else if(item.lastname.toLowerCase().indexOf(this.searchQuery.toLowerCase()) !== -1) {
                 this.push('searchResults', item);
             }
+      }
+
+      hasNumber(item) {
+        return /\d/.test(item);
       }
 
 
