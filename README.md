@@ -1,4 +1,4 @@
-# SHOP
+# PeopleFinder
 
 ### Setup
 
@@ -10,14 +10,10 @@ Install [polymer-cli](https://github.com/Polymer/polymer-cli):
 
 
 ##### Setup
-    # Using CLI
-    mkdir shop
-    cd shop
-    polymer init shop
-
-    # Or cloning direct from GitHub
-    git clone https://github.com/Polymer/shop.git
-    cd shop
+    # Clone directly from GitHub
+    git clone https://github.com/rosaliedw/PeopleFinder.git
+    cd peoplefinder
+    git checkout develop
     bower install
 
 ### Start the development server

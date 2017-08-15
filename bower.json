@@ -1,8 +1,8 @@
 {
-  "name": "shop",
+  "name": "PeopleFinder",
   "version": "2.0.0",
   "authors": [
-    "The Polymer Authors"
+    "The WINGS Team"
   ],
   "private": true,
   "dependencies": {
@@ -19,7 +19,9 @@
     "iron-pages": "polymerelements/iron-pages#^2.0.0",
     "iron-selector": "polymerelements/iron-selector#^2.0.0",
     "paper-icon-button": "polymerelements/paper-icon-button#^2.0.0",
-    "paper-spinner": "polymerelements/paper-spinner#^2.0.0"
+    "paper-spinner": "polymerelements/paper-spinner#^2.0.0",
+    "paper-search": "Collaborne/paper-search#^2.0.7",
+    "paper-avatar": "NeilujD/paper-avatar#^2.0.1"
   },
   "devDependencies": {
     "web-component-tester": "^6.0.0"
