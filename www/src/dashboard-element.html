@@ -1,0 +1,153 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-scroll-effects/effects/waterfall.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/app-layout/helpers/helpers.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/paper-search/paper-search-bar.html">
+
+<link rel="import" href="search-result-element.html">
+
+<!--USED TO MOCK SOME DATA -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.js"></script>
+
+<!-- TODO: MAKE A DECENT SEARCH FUNCTION -->
+
+<dom-module id="dashboard-element">
+
+    <template>
+
+        <style>
+
+        </style>
+
+        <app-location route="{{route}}"></app-location>
+        <app-route
+                route="{{route}}"
+                pattern="/:page"
+                data="{{routeData}}"
+                tail="{{subroute}}"></app-route>
+
+        <iron-media-query query="max-width: 767px" query-matches="{{smallScreen}}"></iron-media-query>
+
+
+
+        <paper-search-bar query="{{searchQuery}}"></paper-search-bar>
+
+        <dom-repeat items="{{searchResults}}">
+            <template>
+
+                <search-result-element
+                        firstname="[[item.firstname]]"
+                        lastname="[[item.lastname]]"
+                        department="[[item.department]]"
+                        function="[[item.function]]">
+                </search-result-element>
+                <br>
+            </template>
+        </dom-repeat>
+    </template>
+
+    <script>
+
+    class DashboardElement extends Polymer.Element {
+      static get is() { return 'dashboard-element'; }
+      static get properties() { return {
+        page: {
+          type: String,
+          reflectToAttribute: true,
+          observer: '_pageChanged'
+        },
+        searchQuery: {
+            type: String,
+            reflectToAttribute: true,
+            observer: 'search'
+        },
+        searchResults: {
+            type: Array,
+            value: [],
+            reflectToAttribute: true
+        },
+        mockData: {
+            type: Array,
+            reflectToAttribute: true,
+            notify: true,
+            value: []
+         }
+      }
+      }
+      constructor() {
+        super();
+      }
+
+      ready() {
+        super.ready();
+        this.removeAttribute('unresolved');
+
+        //MOCK SOME DATA
+
+        for(var i = 0; i < 100; i++) {
+
+            this.push('mockData', {
+                firstname: faker.name.firstName(),
+                lastname: faker.name.lastName(),
+                department: faker.name.jobArea(),
+                function: faker.name.jobType(),
+                id: faker.helpers.replaceSymbols('??##??')
+            });
+        }
+
+        console.log(this.mockData);
+      }
+
+      search() {
+
+      //DIT TERUG OP >= 3 ZETTEN LATER, ZODAT WE MINDER CALLS MOETEN MAKEN NAAR DE BACKEND
+        if(this.searchQuery.length >= 0){
+                 this.searchResults = [];
+                 //LOOKING THROUGH ALL THE DATA, ITS NOT SMART
+                 this.mockData.forEach(this.findMatches, this);
+        }
+        if(this.searchQuery.length === 0) {
+                this.searchResults = [];
+        }
+      }
+
+      findMatches(item) {
+
+            if(this.hasNumber(this.searchQuery) && item.id.toLowerCase().indexOf(this.searchQuery.toLowerCase()) !== -1) {
+                this.push('searchResults', item);
+            }
+            if(item.firstname.toLowerCase().indexOf(this.searchQuery.toLowerCase()) !== -1) {
+                this.push('searchResults', item);
+            }
+            else if(item.lastname.toLowerCase().indexOf(this.searchQuery.toLowerCase()) !== -1) {
+                this.push('searchResults', item);
+            }
+      }
+
+      hasNumber(item) {
+        return /\d/.test(item);
+      }
+
+
+
+    }
+    customElements.define(DashboardElement.is, DashboardElement);
+
+
+
+
+    </script>
+
+</dom-module>
+
+
+
+
+

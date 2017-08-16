@@ -1,0 +1,84 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-scroll-effects/effects/waterfall.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/app-layout/helpers/helpers.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/paper-avatar/paper-avatar.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/paper-item/paper-icon-item.html">
+<link rel="import" href="../bower_components/paper-item/paper-item-body.html">
+
+
+<dom-module id="search-result-element">
+
+    <template>
+
+        <style>
+        </style>
+
+        <div role="listbox">
+            <paper-icon-item>
+                <paper-avatar slot="item-icon"></paper-avatar>
+
+                <paper-item-body two-line style="margin-left: 5%;">
+                    <div >[[lastname]] [[firstname]]</div>
+                    <div secondary>[[department]], &nbsp;[[function]]</div>
+                </paper-item-body>
+            </paper-icon-item>
+        </div>
+
+
+    </template>
+
+    <script>
+
+    class SearchResultElement extends Polymer.Element {
+      static get is() { return 'search-result-element'; }
+      static get properties() { return {
+        page: {
+          type: String,
+          reflectToAttribute: true,
+          observer: '_pageChanged'
+        },
+        firstname: {
+            type: String,
+            reflectToAttribute: true
+        },
+        lastname: {
+            type: String,
+            reflectToAttribute: true
+        },
+        department: {
+            type: String,
+            reflectToAttribute: true
+        },
+        function: {
+            type: String,
+            reflectToAttribute: true
+        }
+      }}
+      constructor() {
+        super();
+      }
+
+      ready() {
+        super.ready();
+      }
+
+    }
+    customElements.define(SearchResultElement.is, SearchResultElement);
+
+
+
+
+
+
+    </script>
+
+</dom-module>
