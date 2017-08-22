@@ -13,6 +13,7 @@
 <link rel="import" href="../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../bower_components/paper-item/paper-icon-item.html">
 <link rel="import" href="../bower_components/paper-item/paper-item-body.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
 
 
 <dom-module id="search-result-element">
@@ -23,14 +24,16 @@
         </style>
 
         <div role="listbox">
-            <paper-icon-item>
-                <paper-avatar slot="item-icon"></paper-avatar>
+            <paper-card style="width: 95%; margin-top: -10px">
+                <paper-icon-item>
+                    <paper-avatar slot="item-icon"></paper-avatar>
 
-                <paper-item-body two-line style="margin-left: 5%;">
-                    <div >[[lastname]] [[firstname]]</div>
-                    <div secondary>[[department]], &nbsp;[[function]]</div>
-                </paper-item-body>
-            </paper-icon-item>
+                    <paper-item-body two-line style="margin-left: 5%;">
+                        <div >[[lastname]] [[firstname]]</div>
+                        <div secondary>[[department]], &nbsp;[[function]]</div>
+                    </paper-item-body>
+                </paper-icon-item>
+            </paper-card>
         </div>
 
 

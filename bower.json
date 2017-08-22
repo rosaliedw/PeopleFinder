@@ -21,7 +21,8 @@
     "paper-icon-button": "polymerelements/paper-icon-button#^2.0.0",
     "paper-spinner": "polymerelements/paper-spinner#^2.0.0",
     "paper-search": "Collaborne/paper-search#^2.0.7",
-    "paper-avatar": "NeilujD/paper-avatar#^2.0.1"
+    "paper-avatar": "NeilujD/paper-avatar#^2.0.1",
+    "paper-card": "PolymerElements/paper-card#^2.0.0"
   },
   "devDependencies": {
     "web-component-tester": "^6.0.0"

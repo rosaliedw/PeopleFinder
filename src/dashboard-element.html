@@ -37,12 +37,25 @@
 
 
 
-        <paper-search-bar query="{{searchQuery}}"></paper-search-bar>
+        <paper-search-bar
+                query="{{searchQuery}}"
+                hide-filter-button="true">
 
+        </paper-search-bar>
+
+        SPINNER WHEN LOADING
+        OR TWITTER LOADERS
+
+        TEXT ALIGN LEFT
+
+        CALL BUTTON ON SEARCH RESULT
+
+        BACKGROUND ON EARCH BAR
+
+        <br>
         <dom-repeat items="{{searchResults}}">
             <template>
-
-                <search-result-element
+                <search-result-element style="text-align: center"
                         firstname="[[item.firstname]]"
                         lastname="[[item.lastname]]"
                         department="[[item.department]]"
@@ -108,7 +121,7 @@
       search() {
 
       //DIT TERUG OP >= 3 ZETTEN LATER, ZODAT WE MINDER CALLS MOETEN MAKEN NAAR DE BACKEND
-        if(this.searchQuery.length >= 0){
+        if(this.searchQuery.length >= 3){
                  this.searchResults = [];
                  //LOOKING THROUGH ALL THE DATA, ITS NOT SMART
                  this.mockData.forEach(this.findMatches, this);
