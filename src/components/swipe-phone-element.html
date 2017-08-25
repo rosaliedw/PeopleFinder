@@ -1,0 +1,79 @@
+<link rel="import" href="/includes.html">
+
+<dom-module id="swipe-phone-element">
+
+    <template>
+
+
+        <style include="custom-styles">
+            [draggable=true] {
+                cursor: move;
+            }
+        </style>
+
+        <paper-icon-item id="dragme" on-track="_handleTrack" class="item cursor-pointer" on-tap="_callPhone">
+            <paper-ripple></paper-ripple>
+            <iron-icon class="icon" icon="communication:phone" slot="item-icon"></iron-icon>
+            <div class="text unselectable">
+                [[mobile]]
+            </div>
+
+            <swipe-animation-element id="animationelement" offset="[[this.offset]]"></swipe-animation-element>
+
+        </paper-icon-item>
+
+
+
+    </template>
+
+    <script>
+        class SwipePhoneElement extends Polymer.GestureEventListeners(Polymer.Element) {
+            static get is() { return 'swipe-phone-element'; }
+            static get properties() {
+                return {
+                    mobile: {
+                        type: String,
+                        reflectToAttribute: true
+                    }
+                }
+            }
+
+            _handleTrack(e) {
+                console.log(e.detail.state);
+                this._animateSwiper(e);
+                var relativeOffset = e.detail.x/this.$.dragme.offsetWidth;
+                console.log(relativeOffset);
+                    console.log(relativeOffset);
+                if (e.detail.state === 'end') {
+                    var threshold = Math.abs(e.detail.dx /this.$.dragme.offsetWidth);
+                    
+                    if (e.detail.dx > 0 && threshold > 0.1 && (relativeOffset <= 0.3 || relativeOffset >= 0.7)) {
+                        this._textPhone()
+                        window.location.assign(encodeURI('sms:' + this.mobile));
+                    } else if (e.detail.dx < 0 && threshold > 0.1) {
+                        this._callPhone();
+                    }
+                }
+            }
+
+            _textPhone() {
+                window.location.assign(encodeURI('sms:' + this.mobile));
+            }
+
+            _callPhone() {
+                window.location.assign(encodeURI('tel:' + this.mobile));
+
+            }
+
+            _animateSwiper(e) {
+                this.$.animationelement.style['opacity'] = e.detail.state !== ('track' || 'start') ? 0 : 0.5;
+                this.$.animationelement.style['left'] = e.detail.x + 'px';
+                this.$.animationelement.updateStyles();
+            }
+
+        }
+
+        customElements.define(SwipePhoneElement.is, SwipePhoneElement);
+    </script>
+
+</dom-module>

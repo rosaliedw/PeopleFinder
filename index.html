@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <base href="/">
@@ -11,7 +12,6 @@
   <link rel="manifest" href="manifest.json">
 
   <style>
-
     body {
       margin: 0;
       font-family: 'Roboto', 'Noto', sans-serif;
@@ -19,9 +19,9 @@
       line-height: 1.5;
       min-height: 100vh;
     }
-
     /* styling for render while resources are loading */
-    dashboard-element[unresolved] {
+
+    dashboard-page[unresolved] {
       display: block;
       min-height: 101vh;
       line-height: 68px;
@@ -33,19 +33,19 @@
       padding: 0 16px;
       overflow: visible;
     }
-
   </style>
 
 </head>
+
 <body>
 
-  <dashboard-element unresolved></dashboard-element>
+  <!-- <dashboard-page unresolved></dashboard-page> -->
+
+  <person-details-page cn="Yoran Cobben" uid="il79gb" department="NSP" title="uncodified" mobile="0499269024" mail="yoran.cobben@ing.be"
+    preferred-language="nl"> </person-details-page>
 
   <link rel="import" href="includes.html">
-  
-
-
- 
 
 </body>
+
 </html>

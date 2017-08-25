@@ -1,13 +1,12 @@
 <!--USED TO MOCK SOME DATA -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.js"></script>
 
-<!-- TODO: MAKE A DECENT SEARCH FUNCTION -->
 <link rel="import" href="/bower_components/polymer/polymer-element.html">
 
 <link rel="import" href="/includes.html">
 
 
-<dom-module id="dashboard-element">
+<dom-module id="dashboard-page">
 
     <template>
 
@@ -43,8 +42,8 @@
     </template>
 
     <script>
-        class DashboardElement extends Polymer.Element {
-            static get is() { return 'dashboard-element'; }
+        class DashboardPage extends Polymer.Element {
+            static get is() { return 'dashboard-page'; }
             static get properties() {
                 return {
                     loading: {
@@ -68,9 +67,7 @@
                     }
                 }
             }
-            constructor() {
-                super();
-            }
+           
 
             ready() {
                 super.ready();
@@ -106,8 +103,9 @@
                 }
             }
 
-            handleResponse(response) {
-                this.searchResults = response;
+            handleResponse(e) {
+                //TODO parse response object to array
+                this.searchResults = e.detail.response;
             }
 
             hasNumber(item) {
@@ -117,7 +115,7 @@
 
 
         }
-        customElements.define(DashboardElement.is, DashboardElement);
+        customElements.define(DashboardPage.is, DashboardPage);
     </script>
 
 </dom-module>

@@ -1,0 +1,36 @@
+<link rel="import" href="/includes.html">
+
+<dom-module id="swipe-animation-element">
+
+    <template>
+
+
+        <style include="custom-styles">
+            :host {
+                height: 80%;
+                background-color: red;
+                position: absolute;
+                z-index: 1;
+                opacity: 0;
+                -webkit-transform: translate(-50%, 0);
+            }
+        </style>
+
+       blabla
+
+
+
+
+    </template>
+
+    <script>
+        class SwipeAnimationElement extends Polymer.Element {
+            static get is() { return 'swipe-animation-element'; }
+        
+           
+        }
+
+        customElements.define(SwipeAnimationElement.is, SwipeAnimationElement);
+    </script>
+
+</dom-module>
